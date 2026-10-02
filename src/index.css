@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0a0a0f;
+    color: #e6edf3;
+    font-family: 'Fira Code', monospace;
+  }
+
+  /* Retro custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0e15;
+    border-left: 1px solid #272938;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #272938;
+    border-radius: 0px;
+    border: 1px solid #00ff88;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00ff88;
+  }
+}
+
+/* CRT Scanlines Overlay */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* CRT Vignette */
+.crt-vignette {
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+/* Blinking terminal cursor */
+.terminal-cursor::after {
+  content: '█';
+  animation: blink 1s step-start infinite;
+  color: #00ff88;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Text glow utilities */
+.text-glow-mana {
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
+}
+
+.text-glow-ember {
+  text-shadow: 0 0 8px rgba(255, 94, 0, 0.7);
+}
+
+.text-glow-magic {
+  text-shadow: 0 0 8px rgba(255, 0, 127, 0.7);
+}
+
+.text-glow-xp {
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.7);
+}
