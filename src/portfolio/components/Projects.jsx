@@ -69,7 +69,11 @@ function Card({ p, span, index }) {
 
 export default function Projects() {
   const [cat, setCat] = useState('Todos');
-  const list = projects.filter((p) => cat === 'Todos' || p.category === cat);
+  const [expanded, setExpanded] = useState(false);
+  const INITIAL = 7;
+  const filtered = projects.filter((p) => cat === 'Todos' || p.category === cat);
+  const collapsed = cat === 'Todos' && !expanded && filtered.length > INITIAL;
+  const list = collapsed ? filtered.slice(0, INITIAL) : filtered;
   // Cuadrícula tipo bento (solo ≥ lg): ciclo de 7 tarjetas = filas 2+1, 1+1+1, 1+2.
   const cycle = ['lg:col-span-2', '', '', '', '', '', 'lg:col-span-2'];
   const spans =
@@ -115,6 +119,19 @@ export default function Projects() {
           ))}
         </AnimatePresence>
       </motion.div>
+
+      {cat === 'Todos' && filtered.length > INITIAL && (
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            aria-expanded={expanded}
+            className="inline-flex min-h-[48px] items-center rounded-full border border-white/20 px-7 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+          >
+            {expanded ? 'Ver menos' : `Ver más proyectos (+${filtered.length - INITIAL})`}
+          </button>
+        </div>
+      )}
 
       <Reveal className="mt-10 text-center">
         <a href={profile.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition hover:text-white">

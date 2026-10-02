@@ -1,9 +1,24 @@
 const gh = (repo) => `https://github.com/MarteDevs/${repo}`;
 
-export const categories = ['Todos', 'Automatización', 'Móvil', 'Full-stack', 'Datos & IA'];
+export const categories = ['Todos', 'Full-stack', 'Backend', 'Móvil', 'Automatización', 'Datos & IA'];
 
-// El orden importa: la cuadrícula "Todos" alterna tarjetas anchas y angostas.
+// El orden importa: la cuadrícula "Todos" alterna tarjetas anchas y angostas en bloques de 7.
+// Los primeros 7 se ven de entrada; el resto aparece con "Ver más". Mantén el total ≡ 0 o 2 (mod 7) para que las filas cierren.
 export const projects = [
+  {
+    id: 'expedientecheck',
+    title: 'ExpedienteCheck · Reto técnico',
+    category: 'Full-stack',
+    summary:
+      'Reto técnico para finalistas: mini-producto que consume la API de Datos Abiertos del MEF (Ejecución Presupuestal, más de 11 millones de registros) y sigue funcionando aunque el servicio del gobierno falle.',
+    highlights: [
+      'Proxy en Cloud Functions con caché en Firestore (hash SHA-256) que responde en milisegundos',
+      'Enrutamiento inteligente entre búsqueda de texto completo y consultas SQL para evitar errores 409',
+      'Infraestructura con Terraform (DEV y PROD), CI/CD con GitHub Actions y pruebas con Vitest',
+    ],
+    tech: ['Vite', 'JavaScript', 'Firebase', 'Cloud Functions', 'Firestore', 'Terraform', 'GitHub Actions'],
+    links: { code: gh('expedientecheck-reto') },
+  },
   {
     id: 'sire-bot',
     title: 'SIRE Compras Bot · SUNAT',
@@ -21,19 +36,18 @@ export const projects = [
     links: {},
   },
   {
-    id: 'rxh-bot',
-    title: 'Bot SUNAT · Recibos por Honorarios',
-    category: 'Automatización',
-    org: 'Grupo Ormasan',
-    private: true,
+    id: 'pegasus',
+    title: 'Santos Pegasus · Agente de IA (RAG)',
+    category: 'Datos & IA',
     summary:
-      'Automatiza el flujo completo de RxH: autenticación, búsqueda, descarga masiva, procesamiento y generación de reportes.',
+      'Asistente virtual que lee la documentación interna de una empresa en PDF y responde solo con base en esos documentos, sin inventar información.',
     highlights: [
-      'Integrado con SQL Server para trazabilidad',
-      'Procesamiento y reportes con Pandas',
+      'RAG con LangChain, Gemini (LLM y embeddings) y base vectorial FAISS',
+      'Embeddings por lotes que respetan los límites de la API gratuita',
+      'Despliegue automatizado en Oracle Cloud con Terraform y cloud-init',
     ],
-    tech: ['Python', 'FastAPI', 'Playwright', 'SQL Server'],
-    links: {},
+    tech: ['Python', 'LangChain', 'Gemini', 'FAISS', 'Streamlit', 'Terraform', 'OCI'],
+    links: { code: gh('santos-pegasus-agent') },
   },
   {
     id: 'kardia',
@@ -76,6 +90,63 @@ export const projects = [
     ],
     tech: ['Kotlin', 'Jetpack Compose', 'Hilt', 'Android'],
     links: { code: gh('MaderaApp') },
+  },
+  {
+    id: 'licitaciones',
+    title: 'Plataforma de Licitaciones Inversas',
+    category: 'Full-stack',
+    summary:
+      'Los compradores publican lo que necesitan y los proveedores compiten con sus ofertas; solo el comprador ve todas las propuestas.',
+    highlights: [
+      'Frontend en React con TypeScript y API REST en FastAPI',
+      'PostgreSQL como base de datos y autenticación con Firebase Auth / JWT',
+      'Roles de consumidor y proveedor, con privacidad entre ofertas',
+    ],
+    tech: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'Firebase Auth'],
+    links: { code: gh('Licitaciones') },
+  },
+  {
+    id: 'mineria',
+    title: 'Madera Minería · Microservicios',
+    category: 'Backend',
+    summary:
+      'Sistema de pedidos y entregas de madera para minería, con cinco microservicios que se comunican de forma síncrona y asíncrona.',
+    highlights: [
+      'API Gateway con JWT y control de roles',
+      'OpenFeign y RabbitMQ para el flujo pedido, notificación y entrega',
+      'Una base PostgreSQL por servicio y orquestación con Docker Compose',
+    ],
+    tech: ['Java 21', 'Spring Boot', 'RabbitMQ', 'OpenFeign', 'PostgreSQL', 'Docker'],
+    links: { code: gh('madera-mineria') },
+  },
+  {
+    id: 'soldadura',
+    title: 'Control de proyectos de soldadura · IA',
+    category: 'Automatización',
+    summary:
+      'API que automatiza el costeo y seguimiento de proyectos de soldadura: lee presupuestos en PDF, extrae los datos con IA y los estructura en base de datos.',
+    highlights: [
+      'FastAPI con arquitectura en capas (controladores, servicios y modelos)',
+      'Extracción estructurada de PDFs con la API de OpenAI',
+      'Control de avances semanales y reportes estandarizados',
+    ],
+    tech: ['Python', 'FastAPI', 'OpenAI', 'SQLAlchemy', 'MySQL'],
+    links: { code: gh('automation-of-tracking-back') },
+  },
+  {
+    id: 'rxh-bot',
+    title: 'Bot SUNAT · Recibos por Honorarios',
+    category: 'Automatización',
+    org: 'Grupo Ormasan',
+    private: true,
+    summary:
+      'Automatiza el flujo completo de RxH: autenticación, búsqueda, descarga masiva, procesamiento y generación de reportes.',
+    highlights: [
+      'Integrado con SQL Server para trazabilidad',
+      'Procesamiento y reportes con Pandas',
+    ],
+    tech: ['Python', 'FastAPI', 'Playwright', 'SQL Server'],
+    links: {},
   },
   {
     id: 'sismoclima',
@@ -121,6 +192,34 @@ export const projects = [
       code: gh('Asistente-AI-MYPE-Peru---Backend'),
       demo: 'https://asistente-ai-mype-peru-frontend.vercel.app',
     },
+  },
+  {
+    id: 'tallermina',
+    title: 'Análisis de Consumos · Taller Mina',
+    category: 'Datos & IA',
+    summary:
+      'Plataforma web que carga archivos Excel de consumo, calcula indicadores de costos y exporta reportes ejecutivos.',
+    highlights: [
+      'KPIs en tiempo real y gráficos de gasto por mina y producto',
+      'Reporte consolidado por lotes de minas',
+      'Exportación a Excel y PDF con formato corporativo',
+    ],
+    tech: ['Python', 'Flask', 'Excel', 'PDF'],
+    links: { code: gh('AnaliticDataTallerMina') },
+  },
+  {
+    id: 'telecomx',
+    title: 'Telecom X · Predicción de churn',
+    category: 'Datos & IA',
+    summary:
+      'Challenge de Alura Latam (Oracle ONE): análisis y modelo de machine learning para predecir la evasión de clientes de una telco.',
+    highlights: [
+      'EDA sobre 7.043 clientes: 26,5 % de churn',
+      'Los contratos mes a mes concentran el 88 % de la fuga',
+      'Regresión logística y Random Forest, evaluados con ROC-AUC y matriz de confusión',
+    ],
+    tech: ['Python', 'Pandas', 'Scikit-learn', 'Matplotlib', 'Seaborn'],
+    links: { code: gh('reto_final_telecomX') },
   },
   {
     id: 'bcrp-etl',
