@@ -163,18 +163,22 @@ export const projects = [
     links: { code: gh('anomaly-detection') },
   },
   {
-    id: 'madera-erp',
-    title: 'Madera ERP',
+    id: 'poltand',
+    title: 'Madera Poltand · Sistema en producción',
     category: 'Full-stack',
     summary:
-      'Sistema logístico que digitaliza pedidos, viajes y stock de madera, desde el requerimiento hasta la recepción en planta.',
+      'Sistema web de la empresa para gestionar requerimientos, viajes, ingresos y proveedores de madera, en uso real con acceso por usuario.',
     highlights: [
-      'API REST en TypeScript con Prisma y MySQL',
-      'Validación con Zod, tests con Jest y documentación Swagger',
-      'Autenticación JWT con refresh token',
+      'API REST con Node.js y Express 5, MySQL y autenticación JWT con bcrypt',
+      'Seguridad en capas: Helmet, CORS estricto, rate limiting, HPP y control por API key',
+      'Logs con Winston y despliegue con PM2 detrás de un proxy inverso',
     ],
-    tech: ['TypeScript', 'Express', 'Prisma', 'MySQL', 'Vue', 'Docker'],
-    links: { code: gh('maderera-backend'), demo: 'https://maderera-frontend.vercel.app' },
+    tech: ['Node.js', 'Express', 'MySQL', 'JWT', 'Vue', 'PM2'],
+    links: {
+      code: gh('poltand_madera'),
+      demo: 'https://poltand.duckdns.org/login',
+      demoLabel: 'Ver en producción',
+    },
   },
   {
     id: 'mype-ai',

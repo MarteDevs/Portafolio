@@ -58,7 +58,7 @@ function Card({ p, span, index }) {
           )}
           {p.links.demo && (
             <a href={p.links.demo} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-accent transition hover:text-white">
-              <ExternalLink className="h-4 w-4" /> Demo en vivo
+              <ExternalLink className="h-4 w-4" /> {p.links.demoLabel ?? 'Demo en vivo'}
             </a>
           )}
         </div>
