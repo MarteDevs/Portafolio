@@ -5,7 +5,7 @@ export default function Stack() {
   return (
     <section id="stack" className="mx-auto max-w-6xl scroll-mt-16 px-5 py-24">
       <SectionTitle
-        eyebrow="02 — Stack"
+        eyebrow="03 — Stack"
         title="Tecnologías con las que construyo"
         subtitle="Lo que uso en los proyectos de arriba, agrupado por área."
       />

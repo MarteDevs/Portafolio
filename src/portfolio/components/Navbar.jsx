@@ -6,8 +6,9 @@ import { profile } from '../data/profile';
 const links = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'proyectos', label: 'Proyectos' },
+  { id: 'experiencia', label: 'Experiencia' },
   { id: 'stack', label: 'Stack' },
-  { id: 'sobre-mi', label: 'Sobre mí' },
+  { id: 'formacion', label: 'Formación' },
   { id: 'contacto', label: 'Contacto' },
 ];
 

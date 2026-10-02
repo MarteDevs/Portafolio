@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import { profile } from '../data/profile';
 import SafeBoundary from './SafeBoundary';
 
@@ -67,7 +67,7 @@ export default function Hero() {
         <div>
           <motion.div {...item(0.05)} className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-300">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-            Disponible para nuevos proyectos · {profile.location}
+            {profile.status} · {profile.location}
           </motion.div>
 
           <motion.h1 {...item(0.15)} className="mt-7 font-display text-5xl font-extrabold leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-[84px]">
@@ -91,6 +91,13 @@ export default function Hero() {
               className="inline-flex min-h-[48px] items-center rounded-full border border-white/20 px-7 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/5"
             >
               Escríbeme
+            </a>
+            <a
+              href={profile.cv}
+              download
+              className="inline-flex min-h-[48px] items-center gap-2 px-4 text-[15px] font-medium text-slate-400 transition hover:text-white"
+            >
+              <Download className="h-4 w-4" /> CV
             </a>
           </motion.div>
         </div>

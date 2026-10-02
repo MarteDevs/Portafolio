@@ -42,7 +42,7 @@ export default function Contact() {
   return (
     <section id="contacto" className="mx-auto max-w-6xl scroll-mt-16 px-5 py-24">
       <SectionTitle
-        eyebrow="04 — Contacto"
+        eyebrow="05 — Contacto"
         title="¿Tienes un proyecto o una vacante?"
         subtitle="Escríbeme y te respondo lo antes posible."
       />

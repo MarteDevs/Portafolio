@@ -1,28 +1,114 @@
 const gh = (repo) => `https://github.com/MarteDevs/${repo}`;
 
-export const categories = ['Todos', 'Full-stack', 'Backend', 'Datos & IA'];
+export const categories = ['Todos', 'Automatización', 'Móvil', 'Full-stack', 'Datos & IA'];
 
+// El orden importa: la cuadrícula "Todos" alterna tarjetas anchas y angostas.
 export const projects = [
+  {
+    id: 'sire-bot',
+    title: 'SIRE Compras Bot · SUNAT',
+    category: 'Automatización',
+    org: 'Grupo Ormasan',
+    private: true,
+    summary:
+      'Bot RPA que automatiza el login, la navegación y la descarga masiva de comprobantes electrónicos desde SUNAT y los guarda en SQL Server.',
+    highlights: [
+      'Facturas, guías y XML serie E y F, de punta a punta',
+      'Reintentos automáticos y validación de integridad del XML',
+      'Reportes con Pandas; redujo el proceso de horas a minutos',
+    ],
+    tech: ['Python', 'Playwright', 'FastAPI', 'SQL Server', 'Pandas'],
+    links: {},
+  },
+  {
+    id: 'rxh-bot',
+    title: 'Bot SUNAT · Recibos por Honorarios',
+    category: 'Automatización',
+    org: 'Grupo Ormasan',
+    private: true,
+    summary:
+      'Automatiza el flujo completo de RxH: autenticación, búsqueda, descarga masiva, procesamiento y generación de reportes.',
+    highlights: [
+      'Integrado con SQL Server para trazabilidad',
+      'Procesamiento y reportes con Pandas',
+    ],
+    tech: ['Python', 'FastAPI', 'Playwright', 'SQL Server'],
+    links: {},
+  },
+  {
+    id: 'kardia',
+    title: 'Kardia · Reserva médica EsSalud',
+    category: 'Móvil',
+    summary:
+      'App Android para reservar citas médicas: busca doctores por especialidad, agenda, reprograma y cancela citas.',
+    highlights: [
+      'Registro e inicio de sesión con Firebase Auth y Google',
+      'Directorio de doctores con filtros y calificaciones',
+      'Notificaciones y recordatorios de citas',
+    ],
+    tech: ['Kotlin', 'Android', 'Firebase Auth', 'Firestore'],
+    links: { code: gh('Essalud-reserva-medica-app') },
+  },
+  {
+    id: 'aura',
+    title: 'Aura Music Downloader',
+    category: 'Móvil',
+    summary:
+      'Ecosistema cliente-servidor para buscar y descargar música en FLAC y MP3 320k, con web en React y app Android.',
+    highlights: [
+      'Cola de descargas con progreso en tiempo real por WebSocket',
+      'Etiquetado ID3 con carátula, biblioteca y favoritos',
+      'HTTPS automático con Caddy, rate limiting y protección de rutas',
+    ],
+    tech: ['FastAPI', 'React', 'Kotlin', 'WebSocket', 'MySQL'],
+    links: { code: gh('AuraDowloader') },
+  },
+  {
+    id: 'madera-app',
+    title: 'Madera Poltand · App Android',
+    category: 'Móvil',
+    summary:
+      'Aplicación Android para la gestión de inventario y operaciones de Madera Poltand, con APK y AAB firmados para producción.',
+    highlights: [
+      'Interfaz moderna con Jetpack Compose',
+      'Inyección de dependencias con Hilt',
+      'Compatible con Android 8.0 (API 26) o superior',
+    ],
+    tech: ['Kotlin', 'Jetpack Compose', 'Hilt', 'Android'],
+    links: { code: gh('MaderaApp') },
+  },
   {
     id: 'sismoclima',
     title: 'Sismoclima Perú',
     category: 'Datos & IA',
-    featured: true,
     summary:
       'Plataforma de prevención que consolida clima, calidad del aire y sismicidad en tiempo real y detecta anomalías con Machine Learning.',
     highlights: [
-      'Backend SOAP con Spring Boot (Java 21) y persistencia en MySQL',
-      'Ingesta de USGS, Open-Meteo y OpenAQ; modelos tipo Isolation Forest',
+      'Backend SOAP con Spring Boot (Java 21) y MySQL',
+      'Ingesta de USGS, Open-Meteo y OpenAQ',
       'Panel Vue 3 con mapas Leaflet y reportes PDF',
     ],
     tech: ['Java 21', 'Spring Boot', 'SOAP', 'MySQL', 'Vue 3', 'Leaflet'],
     links: { code: gh('anomaly-detection') },
   },
   {
+    id: 'madera-erp',
+    title: 'Madera ERP',
+    category: 'Full-stack',
+    summary:
+      'Sistema logístico que digitaliza pedidos, viajes y stock de madera, desde el requerimiento hasta la recepción en planta.',
+    highlights: [
+      'API REST en TypeScript con Prisma y MySQL',
+      'Validación con Zod, tests con Jest y documentación Swagger',
+      'Autenticación JWT con refresh token',
+    ],
+    tech: ['TypeScript', 'Express', 'Prisma', 'MySQL', 'Vue', 'Docker'],
+    links: { code: gh('maderera-backend'), demo: 'https://maderera-frontend.vercel.app' },
+  },
+  {
     id: 'mype-ai',
     title: 'Asistente AI para MYPE Perú',
     category: 'Full-stack',
-    featured: true,
     summary:
       'Asistente para micro y pequeñas empresas: calcula el régimen tributario más conveniente y responde consultas con IA.',
     highlights: [
@@ -37,45 +123,11 @@ export const projects = [
     },
   },
   {
-    id: 'madera-erp',
-    title: 'Madera ERP',
-    category: 'Full-stack',
-    featured: true,
-    summary:
-      'Sistema logístico que digitaliza pedidos, viajes y stock de madera, desde el requerimiento hasta la recepción en planta.',
-    highlights: [
-      'API REST en TypeScript con Prisma y MySQL',
-      'Validación con Zod, tests con Jest y documentación Swagger',
-      'Autenticación JWT con refresh token',
-    ],
-    tech: ['TypeScript', 'Express', 'Prisma', 'MySQL', 'Vue', 'Docker'],
-    links: {
-      code: gh('maderera-backend'),
-      demo: 'https://maderera-frontend.vercel.app',
-    },
-  },
-  {
-    id: 'microservicios',
-    title: 'E-commerce con Microservicios',
-    category: 'Backend',
-    featured: false,
-    summary:
-      'Arquitectura distribuida con Spring Cloud: descubrimiento de servicios, gateway único y seguridad centralizada con JWT.',
-    highlights: [
-      'Eureka, API Gateway y OpenFeign entre servicios',
-      'Servicios de auth, productos y órdenes',
-      'Validación de tokens en el gateway',
-    ],
-    tech: ['Java 17', 'Spring Boot', 'Spring Cloud', 'Eureka', 'JWT'],
-    links: { code: gh('microservicies-example') },
-  },
-  {
     id: 'bcrp-etl',
     title: 'Pipeline ETL · Indicadores BCRP',
     category: 'Datos & IA',
-    featured: false,
     summary:
-      'Pipeline que extrae indicadores macroeconómicos del BCRP, los valida y los carga en SQL Server para análisis.',
+      'Extrae indicadores macroeconómicos del BCRP, los valida y los carga en SQL Server para análisis.',
     highlights: [
       'Extractor, transformador, validador y loader desacoplados',
       'Tipo de cambio, inflación, reservas y tasa de referencia',
@@ -83,23 +135,5 @@ export const projects = [
     ],
     tech: ['Python', 'Pandas', 'SQLAlchemy', 'SQL Server', 'Docker'],
     links: { code: gh('bcrp-etl') },
-  },
-  {
-    id: 'costeos',
-    title: 'Seguimiento y Costeo de Taller',
-    category: 'Full-stack',
-    featured: false,
-    summary:
-      'Aplicación para seguir proyectos de taller y calcular costos automáticamente, con exportación de manifiestos.',
-    highlights: [
-      'API REST con arquitectura MVC y transacciones MySQL',
-      'Campos calculados directamente en la base de datos',
-      'Frontend en Vue desplegado en Vercel',
-    ],
-    tech: ['Node.js', 'Express', 'MySQL', 'Vue', 'Vercel'],
-    links: {
-      code: gh('seguimiento-costeos-taller-backend'),
-      demo: 'https://seguimiento-costeos-taller-frontend.vercel.app',
-    },
   },
 ];

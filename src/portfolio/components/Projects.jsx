@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, Lock } from 'lucide-react';
 import { projects, categories } from '../data/projects';
 import { profile } from '../data/profile';
 import Reveal, { SectionTitle } from './Reveal';
@@ -47,9 +47,15 @@ function Card({ p, span, index }) {
         </div>
 
         <div className="mt-6 flex gap-6 border-t border-white/10 pt-4 text-sm">
-          <a href={p.links.code} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-slate-200 transition hover:text-accent">
-            <Github className="h-4 w-4" /> Código
-          </a>
+          {p.links.code ? (
+            <a href={p.links.code} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-slate-200 transition hover:text-accent">
+              <Github className="h-4 w-4" /> Código
+            </a>
+          ) : (
+            <span className="inline-flex min-h-[44px] items-center gap-1.5 text-slate-500">
+              <Lock className="h-4 w-4" /> Código privado{p.org ? ` · ${p.org}` : ''}
+            </span>
+          )}
           {p.links.demo && (
             <a href={p.links.demo} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-accent transition hover:text-white">
               <ExternalLink className="h-4 w-4" /> Demo en vivo
@@ -64,15 +70,18 @@ function Card({ p, span, index }) {
 export default function Projects() {
   const [cat, setCat] = useState('Todos');
   const list = projects.filter((p) => cat === 'Todos' || p.category === cat);
-  // Cuadrícula tipo bento: tarjetas anchas y angostas alternadas (solo en pantallas grandes)
+  // Cuadrícula tipo bento (solo ≥ lg): ciclo de 7 tarjetas = filas 2+1, 1+1+1, 1+2.
+  const cycle = ['lg:col-span-2', '', '', '', '', '', 'lg:col-span-2'];
   const spans =
     cat === 'Todos'
-      ? ['lg:col-span-2', '', '', 'lg:col-span-2', '', 'lg:col-span-2']
+      ? list.map((_, i) => cycle[i % 7])
       : list.length === 1
         ? ['lg:col-span-3']
         : list.length === 2
           ? ['lg:col-span-2', '']
-          : ['', '', ''];
+          : list.map(() => '');
+  // Si la última fila queda incompleta en "Todos", la última tarjeta la completa.
+  if (cat === 'Todos' && list.length % 7 === 1) spans[list.length - 1] = 'lg:col-span-3';
 
   return (
     <section id="proyectos" className="mx-auto max-w-6xl scroll-mt-16 px-5 py-24">
