@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X, Github } from 'lucide-react';
 import { profile } from '../data/profile';
+import Logo from './Logo';
 
 const links = [
   { id: 'inicio', label: 'Inicio' },
@@ -45,9 +46,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <a href="#inicio" className="flex items-center gap-2.5 font-semibold text-white">
-          <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-accent font-display text-sm font-extrabold text-ink">
-            {profile.initials}
-          </span>
+          <Logo size={36} />
           <span className="hidden font-display font-bold sm:inline">Marco Polo</span>
         </a>
 
