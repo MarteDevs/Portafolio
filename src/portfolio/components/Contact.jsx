@@ -10,7 +10,7 @@ const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const configured = Boolean(SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY);
 
 const input =
-  'w-full rounded-xl border border-white/10 bg-ink px-4 py-3 text-sm text-white placeholder:text-slate-600 outline-none transition focus:border-accent-violet focus:ring-2 focus:ring-accent-violet/30';
+  'w-full rounded-xl border border-white/10 bg-ink px-4 py-3 text-sm text-white placeholder:text-slate-600 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30';
 
 export default function Contact() {
   const form = useRef(null);
@@ -42,7 +42,7 @@ export default function Contact() {
   return (
     <section id="contacto" className="mx-auto max-w-6xl scroll-mt-16 px-5 py-24">
       <SectionTitle
-        eyebrow="Contacto"
+        eyebrow="04 — Contacto"
         title="¿Tienes un proyecto o una vacante?"
         subtitle="Escríbeme y te respondo lo antes posible."
       />
@@ -70,7 +70,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan px-6 py-3 text-sm font-semibold text-ink transition hover:opacity-90 disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-ink transition hover:opacity-90 disabled:opacity-60"
               >
                 <Send className="h-4 w-4" />
                 {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
@@ -104,7 +104,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-surface p-5 transition hover:border-white/25"
             >
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-white/5 text-accent-cyan transition group-hover:bg-accent-violet/20">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-white/5 text-accent transition group-hover:bg-accent/20">
                 <c.icon className="h-5 w-5" />
               </div>
               <div className="min-w-0">

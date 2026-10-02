@@ -8,7 +8,7 @@ export default function Marquee() {
         {items.map((t, i) => (
           <span key={i} className="flex items-center gap-10 font-mono text-sm text-slate-500">
             {t}
-            <span className="h-1 w-1 rounded-full bg-accent-violet" />
+            <span className="h-1 w-1 rounded-full bg-accent" />
           </span>
         ))}
       </div>

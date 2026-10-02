@@ -17,9 +17,9 @@ export default function Reveal({ children, delay = 0, y = 24, className = '' }) 
 
 export function SectionTitle({ eyebrow, title, subtitle }) {
   return (
-    <Reveal className="mb-12 max-w-2xl">
-      <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-accent-cyan">{eyebrow}</p>
-      <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{title}</h2>
+    <Reveal className="mb-12 max-w-3xl">
+      <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">{eyebrow}</p>
+      <h2 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl">{title}</h2>
       {subtitle && <p className="mt-4 text-base leading-relaxed text-slate-400">{subtitle}</p>}
     </Reveal>
   );
