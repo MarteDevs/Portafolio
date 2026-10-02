@@ -2,20 +2,23 @@ import { useEffect, useState } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X, Github } from 'lucide-react';
 import { profile } from '../data/profile';
+import { useLang } from '../i18n/LanguageContext';
 import Logo from './Logo';
+import LangSwitch from './LangSwitch';
 
 const links = [
-  { id: 'inicio', label: 'Inicio' },
-  { id: 'proyectos', label: 'Proyectos' },
-  { id: 'experiencia', label: 'Experiencia' },
-  { id: 'stack', label: 'Stack' },
-  { id: 'formacion', label: 'Formación' },
-  { id: 'contacto', label: 'Contacto' },
+  { id: 'proyectos', key: 'projects' },
+  { id: 'areas', key: 'roles' },
+  { id: 'experiencia', key: 'experience' },
+  { id: 'stack', key: 'stack' },
+  { id: 'formacion', key: 'education' },
+  { id: 'contacto', key: 'contact' },
 ];
 
 export default function Navbar() {
+  const { t, tr } = useLang();
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState('inicio');
+  const [active, setActive] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
@@ -44,41 +47,42 @@ export default function Navbar() {
         scrolled || open ? 'border-b border-white/10 bg-ink/80 backdrop-blur-xl' : 'bg-transparent'
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <a href="#inicio" className="flex items-center gap-2.5 font-semibold text-white">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5" aria-label="Principal">
+        <a href="#inicio" className="flex items-center gap-2.5 text-white" aria-label={profile.name}>
           <Logo size={36} />
-          <span className="hidden font-display font-bold sm:inline">Marco Polo</span>
+          <span className="hidden font-display font-bold xl:inline">Marco Polo</span>
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-0.5 lg:flex">
           {links.map((l) => (
             <li key={l.id}>
               <a
                 href={`#${l.id}`}
-                className={`rounded-full px-4 py-2 text-sm transition-colors ${
+                className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
                   active === l.id ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white'
                 }`}
               >
-                {l.label}
+                {tr(t.nav[l.key])}
               </a>
             </li>
           ))}
         </ul>
 
         <div className="flex items-center gap-2">
+          <LangSwitch />
           <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-300 transition hover:border-white/30 hover:text-white"
+            className="hidden h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-300 transition hover:border-white/30 hover:text-white sm:grid"
           >
             <Github className="h-4 w-4" />
           </a>
           <button
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-300 md:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-slate-300 lg:hidden"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Menú"
+            aria-label={tr(t.nav.menu)}
             aria-expanded={open}
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -87,7 +91,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <ul className="border-t border-white/10 px-5 pb-4 pt-2 md:hidden">
+        <ul className="border-t border-white/10 px-5 pb-4 pt-2 lg:hidden">
           {links.map((l) => (
             <li key={l.id}>
               <a
@@ -95,17 +99,14 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="block rounded-lg px-3 py-3 text-slate-300 hover:bg-white/5 hover:text-white"
               >
-                {l.label}
+                {tr(t.nav[l.key])}
               </a>
             </li>
           ))}
         </ul>
       )}
 
-      <motion.div
-        style={{ scaleX: progress }}
-        className="absolute inset-x-0 bottom-0 h-px origin-left bg-accent"
-      />
+      <motion.div style={{ scaleX: progress }} className="absolute inset-x-0 bottom-0 h-px origin-left bg-accent" />
     </header>
   );
 }

@@ -9,10 +9,17 @@ npm run dev      # http://localhost:3000
 npm run build
 ```
 
+## Idiomas
+La web está en español, inglés y portugués. Detecta el idioma del navegador del visitante (cualquier otro idioma cae a inglés), recuerda su elección y tiene selector ES / EN / PT en el menú.
+- Textos de interfaz: `src/portfolio/i18n/ui.js`. Cada texto es `L('es', 'en', 'pt')`.
+- Para agregar un idioma: añádelo a `LANGS` en `ui.js` y completa su valor en cada `L()` (los archivos de `data/` también).
+
 ## Dónde editar el contenido
 - `src/portfolio/data/profile.js`: nombre, resumen, correo y redes.
 - `src/portfolio/data/projects.js`: proyectos (datos tomados de los repos de GitHub).
-- `src/portfolio/data/skills.js`: stack.
+- `src/portfolio/data/skills.js`: stack y logos (el logo se resuelve por nombre en `components/TechIcon.jsx`).
+- `src/portfolio/data/roles.js`: áreas laborales a las que aplicas.
+- `src/portfolio/data/experience.js`: experiencia, estudios y certificaciones (fechas en `YYYY-MM`).
 - Escena 3D: constante `SPLINE_SCENE` en `src/portfolio/components/Hero.jsx` (solo se carga en pantallas ≥ 1024px y sin "reducir movimiento").
 
 ## Formulario de contacto (EmailJS)

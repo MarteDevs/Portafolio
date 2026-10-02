@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
 import { profile } from '../data/profile';
+import { useLang } from '../i18n/LanguageContext';
 import SafeBoundary from './SafeBoundary';
 
 const Spline = lazy(() => import('@splinetool/react-spline'));
@@ -41,6 +42,7 @@ function OrbitFallback({ animate }) {
 }
 
 export default function Hero() {
+  const { t, tr } = useLang();
   const reduce = useReducedMotion();
   const [showSpline, setShowSpline] = useState(false);
 
@@ -67,15 +69,16 @@ export default function Hero() {
         <div>
           <motion.div {...item(0.05)} className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-4 py-2 text-sm text-slate-300">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-            {profile.status} · {profile.location}
+            {tr(t.hero.status)} · {tr(profile.location)}
           </motion.div>
 
           <motion.h1 {...item(0.15)} className="mt-7 font-display text-5xl font-extrabold leading-[0.98] tracking-tight text-white sm:text-7xl lg:text-[84px]">
-            Automatizo lo que antes era <span className="text-accent">manual</span>.
+            {tr(t.hero.pre)}
+            <span className="text-accent">{tr(t.hero.accent)}</span>.
           </motion.h1>
 
           <motion.p {...item(0.28)} className="mt-7 max-w-lg text-lg leading-relaxed text-slate-400 sm:text-xl">
-            Soy {profile.name}, {profile.role}. {profile.summary}
+            {tr(t.hero.intro)}
           </motion.p>
 
           <motion.div {...item(0.4)} className="mt-9 flex flex-wrap gap-3">
@@ -83,21 +86,21 @@ export default function Hero() {
               href="#proyectos"
               className="group inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-accent px-7 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5"
             >
-              Ver proyectos
+              {tr(t.hero.projects)}
               <ArrowRight className="h-[18px] w-[18px] transition group-hover:translate-x-1" />
             </a>
             <a
               href="#contacto"
               className="inline-flex min-h-[48px] items-center rounded-full border border-white/20 px-7 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/5"
             >
-              Escríbeme
+              {tr(t.hero.contact)}
             </a>
             <a
               href={profile.cv}
               download
               className="inline-flex min-h-[48px] items-center gap-2 px-4 text-[15px] font-medium text-slate-400 transition hover:text-white"
             >
-              <Download className="h-4 w-4" /> CV
+              <Download className="h-4 w-4" /> {tr(t.hero.cv)}
             </a>
           </motion.div>
         </div>
